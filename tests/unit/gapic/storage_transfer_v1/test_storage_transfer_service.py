@@ -3743,7 +3743,6 @@ def test_storage_transfer_service_transport_auth_adc(transport_class):
     [
         transports.StorageTransferServiceGrpcTransport,
         transports.StorageTransferServiceGrpcAsyncIOTransport,
-        transports.StorageTransferServiceRestTransport,
     ],
 )
 def test_storage_transfer_service_transport_auth_gdch_credentials(transport_class):
