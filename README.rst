@@ -3,7 +3,7 @@ Python Client for Storage Transfer Service API
 
 |stable| |pypi| |versions|
 
-`Storage Transfer Service API`_: 
+`Storage Transfer Service API`_: Secure, low-cost services for transferring data from cloud or on-premises sources.
 
 - `Client Library Documentation`_
 - `Product Documentation`_
