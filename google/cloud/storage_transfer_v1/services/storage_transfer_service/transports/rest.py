@@ -14,25 +14,27 @@
 # limitations under the License.
 #
 
-from google.auth.transport.requests import AuthorizedSession  # type: ignore
-import json  # type: ignore
-import grpc  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth import credentials as ga_credentials  # type: ignore
-from google.api_core import exceptions as core_exceptions
-from google.api_core import retry as retries
-from google.api_core import rest_helpers
-from google.api_core import rest_streaming
-from google.api_core import path_template
-from google.api_core import gapic_v1
-
-from google.protobuf import json_format
-from google.api_core import operations_v1
-from requests import __version__ as requests_version
 import dataclasses
+import json  # type: ignore
 import re
 from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
+
+from google.api_core import (
+    gapic_v1,
+    operations_v1,
+    path_template,
+    rest_helpers,
+    rest_streaming,
+)
+from google.api_core import exceptions as core_exceptions
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.transport.requests import AuthorizedSession  # type: ignore
+from google.protobuf import json_format
+import grpc  # type: ignore
+from requests import __version__ as requests_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -40,13 +42,13 @@ except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
 
-from google.cloud.storage_transfer_v1.types import transfer
-from google.cloud.storage_transfer_v1.types import transfer_types
 from google.longrunning import operations_pb2  # type: ignore
 from google.protobuf import empty_pb2  # type: ignore
 
-from .base import StorageTransferServiceTransport, DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from google.cloud.storage_transfer_v1.types import transfer, transfer_types
 
+from .base import DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from .base import StorageTransferServiceTransport
 
 DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
     gapic_version=BASE_DEFAULT_CLIENT_INFO.gapic_version,
@@ -171,7 +173,12 @@ class StorageTransferServiceRestInterceptor:
 
 
     """
-    def pre_create_agent_pool(self, request: transfer.CreateAgentPoolRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[transfer.CreateAgentPoolRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_agent_pool(
+        self,
+        request: transfer.CreateAgentPoolRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[transfer.CreateAgentPoolRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_agent_pool
 
         Override in a subclass to manipulate the request or metadata
@@ -179,7 +186,9 @@ class StorageTransferServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_agent_pool(self, response: transfer_types.AgentPool) -> transfer_types.AgentPool:
+    def post_create_agent_pool(
+        self, response: transfer_types.AgentPool
+    ) -> transfer_types.AgentPool:
         """Post-rpc interceptor for create_agent_pool
 
         Override in a subclass to manipulate the response
@@ -187,7 +196,12 @@ class StorageTransferServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_transfer_job(self, request: transfer.CreateTransferJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[transfer.CreateTransferJobRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_transfer_job(
+        self,
+        request: transfer.CreateTransferJobRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[transfer.CreateTransferJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_transfer_job
 
         Override in a subclass to manipulate the request or metadata
@@ -195,7 +209,9 @@ class StorageTransferServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_transfer_job(self, response: transfer_types.TransferJob) -> transfer_types.TransferJob:
+    def post_create_transfer_job(
+        self, response: transfer_types.TransferJob
+    ) -> transfer_types.TransferJob:
         """Post-rpc interceptor for create_transfer_job
 
         Override in a subclass to manipulate the response
@@ -203,7 +219,12 @@ class StorageTransferServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_agent_pool(self, request: transfer.DeleteAgentPoolRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[transfer.DeleteAgentPoolRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_agent_pool(
+        self,
+        request: transfer.DeleteAgentPoolRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[transfer.DeleteAgentPoolRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_agent_pool
 
         Override in a subclass to manipulate the request or metadata
@@ -211,7 +232,11 @@ class StorageTransferServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_delete_transfer_job(self, request: transfer.DeleteTransferJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[transfer.DeleteTransferJobRequest, Sequence[Tuple[str, str]]]:
+    def pre_delete_transfer_job(
+        self,
+        request: transfer.DeleteTransferJobRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[transfer.DeleteTransferJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_transfer_job
 
         Override in a subclass to manipulate the request or metadata
@@ -219,7 +244,9 @@ class StorageTransferServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_get_agent_pool(self, request: transfer.GetAgentPoolRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[transfer.GetAgentPoolRequest, Sequence[Tuple[str, str]]]:
+    def pre_get_agent_pool(
+        self, request: transfer.GetAgentPoolRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[transfer.GetAgentPoolRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_agent_pool
 
         Override in a subclass to manipulate the request or metadata
@@ -227,7 +254,9 @@ class StorageTransferServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_get_agent_pool(self, response: transfer_types.AgentPool) -> transfer_types.AgentPool:
+    def post_get_agent_pool(
+        self, response: transfer_types.AgentPool
+    ) -> transfer_types.AgentPool:
         """Post-rpc interceptor for get_agent_pool
 
         Override in a subclass to manipulate the response
@@ -235,7 +264,12 @@ class StorageTransferServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_google_service_account(self, request: transfer.GetGoogleServiceAccountRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[transfer.GetGoogleServiceAccountRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_google_service_account(
+        self,
+        request: transfer.GetGoogleServiceAccountRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[transfer.GetGoogleServiceAccountRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_google_service_account
 
         Override in a subclass to manipulate the request or metadata
@@ -243,7 +277,9 @@ class StorageTransferServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_get_google_service_account(self, response: transfer_types.GoogleServiceAccount) -> transfer_types.GoogleServiceAccount:
+    def post_get_google_service_account(
+        self, response: transfer_types.GoogleServiceAccount
+    ) -> transfer_types.GoogleServiceAccount:
         """Post-rpc interceptor for get_google_service_account
 
         Override in a subclass to manipulate the response
@@ -251,7 +287,12 @@ class StorageTransferServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_transfer_job(self, request: transfer.GetTransferJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[transfer.GetTransferJobRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_transfer_job(
+        self,
+        request: transfer.GetTransferJobRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[transfer.GetTransferJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_transfer_job
 
         Override in a subclass to manipulate the request or metadata
@@ -259,7 +300,9 @@ class StorageTransferServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_get_transfer_job(self, response: transfer_types.TransferJob) -> transfer_types.TransferJob:
+    def post_get_transfer_job(
+        self, response: transfer_types.TransferJob
+    ) -> transfer_types.TransferJob:
         """Post-rpc interceptor for get_transfer_job
 
         Override in a subclass to manipulate the response
@@ -267,7 +310,12 @@ class StorageTransferServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_agent_pools(self, request: transfer.ListAgentPoolsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[transfer.ListAgentPoolsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_agent_pools(
+        self,
+        request: transfer.ListAgentPoolsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[transfer.ListAgentPoolsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_agent_pools
 
         Override in a subclass to manipulate the request or metadata
@@ -275,7 +323,9 @@ class StorageTransferServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_agent_pools(self, response: transfer.ListAgentPoolsResponse) -> transfer.ListAgentPoolsResponse:
+    def post_list_agent_pools(
+        self, response: transfer.ListAgentPoolsResponse
+    ) -> transfer.ListAgentPoolsResponse:
         """Post-rpc interceptor for list_agent_pools
 
         Override in a subclass to manipulate the response
@@ -283,7 +333,12 @@ class StorageTransferServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_transfer_jobs(self, request: transfer.ListTransferJobsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[transfer.ListTransferJobsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_transfer_jobs(
+        self,
+        request: transfer.ListTransferJobsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[transfer.ListTransferJobsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_transfer_jobs
 
         Override in a subclass to manipulate the request or metadata
@@ -291,7 +346,9 @@ class StorageTransferServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_transfer_jobs(self, response: transfer.ListTransferJobsResponse) -> transfer.ListTransferJobsResponse:
+    def post_list_transfer_jobs(
+        self, response: transfer.ListTransferJobsResponse
+    ) -> transfer.ListTransferJobsResponse:
         """Post-rpc interceptor for list_transfer_jobs
 
         Override in a subclass to manipulate the response
@@ -299,7 +356,12 @@ class StorageTransferServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_pause_transfer_operation(self, request: transfer.PauseTransferOperationRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[transfer.PauseTransferOperationRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_pause_transfer_operation(
+        self,
+        request: transfer.PauseTransferOperationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[transfer.PauseTransferOperationRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for pause_transfer_operation
 
         Override in a subclass to manipulate the request or metadata
@@ -307,7 +369,11 @@ class StorageTransferServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_resume_transfer_operation(self, request: transfer.ResumeTransferOperationRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[transfer.ResumeTransferOperationRequest, Sequence[Tuple[str, str]]]:
+    def pre_resume_transfer_operation(
+        self,
+        request: transfer.ResumeTransferOperationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[transfer.ResumeTransferOperationRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for resume_transfer_operation
 
         Override in a subclass to manipulate the request or metadata
@@ -315,7 +381,11 @@ class StorageTransferServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_run_transfer_job(self, request: transfer.RunTransferJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[transfer.RunTransferJobRequest, Sequence[Tuple[str, str]]]:
+    def pre_run_transfer_job(
+        self,
+        request: transfer.RunTransferJobRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[transfer.RunTransferJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for run_transfer_job
 
         Override in a subclass to manipulate the request or metadata
@@ -323,7 +393,9 @@ class StorageTransferServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_run_transfer_job(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_run_transfer_job(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for run_transfer_job
 
         Override in a subclass to manipulate the response
@@ -331,7 +403,12 @@ class StorageTransferServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_agent_pool(self, request: transfer.UpdateAgentPoolRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[transfer.UpdateAgentPoolRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_agent_pool(
+        self,
+        request: transfer.UpdateAgentPoolRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[transfer.UpdateAgentPoolRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_agent_pool
 
         Override in a subclass to manipulate the request or metadata
@@ -339,7 +416,9 @@ class StorageTransferServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_update_agent_pool(self, response: transfer_types.AgentPool) -> transfer_types.AgentPool:
+    def post_update_agent_pool(
+        self, response: transfer_types.AgentPool
+    ) -> transfer_types.AgentPool:
         """Post-rpc interceptor for update_agent_pool
 
         Override in a subclass to manipulate the response
@@ -347,7 +426,12 @@ class StorageTransferServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_transfer_job(self, request: transfer.UpdateTransferJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[transfer.UpdateTransferJobRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_transfer_job(
+        self,
+        request: transfer.UpdateTransferJobRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[transfer.UpdateTransferJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_transfer_job
 
         Override in a subclass to manipulate the request or metadata
@@ -355,7 +439,9 @@ class StorageTransferServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_update_transfer_job(self, response: transfer_types.TransferJob) -> transfer_types.TransferJob:
+    def post_update_transfer_job(
+        self, response: transfer_types.TransferJob
+    ) -> transfer_types.TransferJob:
         """Post-rpc interceptor for update_transfer_job
 
         Override in a subclass to manipulate the response
@@ -387,20 +473,21 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
 
     """
 
-    def __init__(self, *,
-            host: str = 'storagetransfer.googleapis.com',
-            credentials: Optional[ga_credentials.Credentials] = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            client_cert_source_for_mtls: Optional[Callable[[
-                ], Tuple[bytes, bytes]]] = None,
-            quota_project_id: Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            always_use_jwt_access: Optional[bool] = False,
-            url_scheme: str = 'https',
-            interceptor: Optional[StorageTransferServiceRestInterceptor] = None,
-            api_audience: Optional[str] = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "storagetransfer.googleapis.com",
+        credentials: Optional[ga_credentials.Credentials] = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        client_cert_source_for_mtls: Optional[Callable[[], Tuple[bytes, bytes]]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
+        url_scheme: str = "https",
+        interceptor: Optional[StorageTransferServiceRestInterceptor] = None,
+        api_audience: Optional[str] = None,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -439,7 +526,9 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         # credentials object
         maybe_url_match = re.match("^(?P<scheme>http(?:s)?://)?(?P<host>.*)$", host)
         if maybe_url_match is None:
-            raise ValueError(f"Unexpected hostname structure: {host}")  # pragma: NO COVER
+            raise ValueError(
+                f"Unexpected hostname structure: {host}"
+            )  # pragma: NO COVER
 
         url_match_items = maybe_url_match.groupdict()
 
@@ -450,10 +539,11 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
             credentials=credentials,
             client_info=client_info,
             always_use_jwt_access=always_use_jwt_access,
-            api_audience=api_audience
+            api_audience=api_audience,
         )
         self._session = AuthorizedSession(
-            self._credentials, default_host=self.DEFAULT_HOST)
+            self._credentials, default_host=self.DEFAULT_HOST
+        )
         self._operations_client: Optional[operations_v1.AbstractOperationsClient] = None
         if client_cert_source_for_mtls:
             self._session.configure_mtls_channel(client_cert_source_for_mtls)
@@ -469,18 +559,20 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         """
         # Only create a new client if we do not already have one.
         if self._operations_client is None:
-            http_options: Dict[str, List[Dict[str, str]]] = {
-            }
+            http_options: Dict[str, List[Dict[str, str]]] = {}
 
             rest_transport = operations_v1.OperationsRestTransport(
-                    host=self._host,
-                    # use the credentials which are saved
-                    credentials=self._credentials,
-                    scopes=self._scopes,
-                    http_options=http_options,
-                    path_prefix="v1")
+                host=self._host,
+                # use the credentials which are saved
+                credentials=self._credentials,
+                scopes=self._scopes,
+                http_options=http_options,
+                path_prefix="v1",
+            )
 
-            self._operations_client = operations_v1.AbstractOperationsClient(transport=rest_transport)
+            self._operations_client = operations_v1.AbstractOperationsClient(
+                transport=rest_transport
+            )
 
         # Return the client from cache.
         return self._operations_client
@@ -489,19 +581,26 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         def __hash__(self):
             return hash("CreateAgentPool")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "agentPoolId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "agentPoolId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: transfer.CreateAgentPoolRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> transfer_types.AgentPool:
+        def __call__(
+            self,
+            request: transfer.CreateAgentPoolRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> transfer_types.AgentPool:
             r"""Call the create agent pool method over HTTP.
 
             Args:
@@ -520,46 +619,51 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
                     Represents an On-Premises Agent pool.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/projects/{project_id=*}/agentPools',
-                'body': 'agent_pool',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/projects/{project_id=*}/agentPools",
+                    "body": "agent_pool",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_agent_pool(request, metadata)
+            request, metadata = self._interceptor.pre_create_agent_pool(
+                request, metadata
+            )
             pb_request = transfer.CreateAgentPoolRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -578,19 +682,24 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         def __hash__(self):
             return hash("CreateTransferJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: transfer.CreateTransferJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> transfer_types.TransferJob:
+        def __call__(
+            self,
+            request: transfer.CreateTransferJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> transfer_types.TransferJob:
             r"""Call the create transfer job method over HTTP.
 
             Args:
@@ -610,46 +719,51 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/transferJobs',
-                'body': 'transfer_job',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/transferJobs",
+                    "body": "transfer_job",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_transfer_job(request, metadata)
+            request, metadata = self._interceptor.pre_create_transfer_job(
+                request, metadata
+            )
             pb_request = transfer.CreateTransferJobRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -668,19 +782,24 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         def __hash__(self):
             return hash("DeleteAgentPool")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: transfer.DeleteAgentPoolRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: transfer.DeleteAgentPoolRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete agent pool method over HTTP.
 
             Args:
@@ -695,37 +814,42 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/agentPools/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/agentPools/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_agent_pool(request, metadata)
+            request, metadata = self._interceptor.pre_delete_agent_pool(
+                request, metadata
+            )
             pb_request = transfer.DeleteAgentPoolRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -736,19 +860,26 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         def __hash__(self):
             return hash("DeleteTransferJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "projectId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "projectId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: transfer.DeleteTransferJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: transfer.DeleteTransferJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete transfer job method over HTTP.
 
             Args:
@@ -761,37 +892,42 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{job_name=transferJobs/**}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{job_name=transferJobs/**}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_transfer_job(request, metadata)
+            request, metadata = self._interceptor.pre_delete_transfer_job(
+                request, metadata
+            )
             pb_request = transfer.DeleteTransferJobRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -802,19 +938,24 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         def __hash__(self):
             return hash("GetAgentPool")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: transfer.GetAgentPoolRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> transfer_types.AgentPool:
+        def __call__(
+            self,
+            request: transfer.GetAgentPoolRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> transfer_types.AgentPool:
             r"""Call the get agent pool method over HTTP.
 
             Args:
@@ -833,37 +974,40 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
                     Represents an On-Premises Agent pool.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/agentPools/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/agentPools/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_agent_pool(request, metadata)
             pb_request = transfer.GetAgentPoolRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -882,69 +1026,79 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         def __hash__(self):
             return hash("GetGoogleServiceAccount")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: transfer.GetGoogleServiceAccountRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> transfer_types.GoogleServiceAccount:
+        def __call__(
+            self,
+            request: transfer.GetGoogleServiceAccountRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> transfer_types.GoogleServiceAccount:
             r"""Call the get google service
-        account method over HTTP.
+            account method over HTTP.
 
-            Args:
-                request (~.transfer.GetGoogleServiceAccountRequest):
-                    The request object. Request passed to
-                GetGoogleServiceAccount.
+                Args:
+                    request (~.transfer.GetGoogleServiceAccountRequest):
+                        The request object. Request passed to
+                    GetGoogleServiceAccount.
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.transfer_types.GoogleServiceAccount:
-                    Google service account
+                Returns:
+                    ~.transfer_types.GoogleServiceAccount:
+                        Google service account
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/googleServiceAccounts/{project_id}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/googleServiceAccounts/{project_id}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_google_service_account(request, metadata)
+            request, metadata = self._interceptor.pre_get_google_service_account(
+                request, metadata
+            )
             pb_request = transfer.GetGoogleServiceAccountRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -963,19 +1117,26 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         def __hash__(self):
             return hash("GetTransferJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "projectId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "projectId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: transfer.GetTransferJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> transfer_types.TransferJob:
+        def __call__(
+            self,
+            request: transfer.GetTransferJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> transfer_types.TransferJob:
             r"""Call the get transfer job method over HTTP.
 
             Args:
@@ -995,37 +1156,42 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{job_name=transferJobs/**}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{job_name=transferJobs/**}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_transfer_job(request, metadata)
+            request, metadata = self._interceptor.pre_get_transfer_job(
+                request, metadata
+            )
             pb_request = transfer.GetTransferJobRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1044,19 +1210,24 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         def __hash__(self):
             return hash("ListAgentPools")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: transfer.ListAgentPoolsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> transfer.ListAgentPoolsResponse:
+        def __call__(
+            self,
+            request: transfer.ListAgentPoolsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> transfer.ListAgentPoolsResponse:
             r"""Call the list agent pools method over HTTP.
 
             Args:
@@ -1073,37 +1244,42 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
                     Response from ListAgentPools.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/projects/{project_id=*}/agentPools',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/projects/{project_id=*}/agentPools",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_agent_pools(request, metadata)
+            request, metadata = self._interceptor.pre_list_agent_pools(
+                request, metadata
+            )
             pb_request = transfer.ListAgentPoolsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1122,19 +1298,26 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         def __hash__(self):
             return hash("ListTransferJobs")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "filter" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "filter": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: transfer.ListTransferJobsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> transfer.ListTransferJobsResponse:
+        def __call__(
+            self,
+            request: transfer.ListTransferJobsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> transfer.ListTransferJobsResponse:
             r"""Call the list transfer jobs method over HTTP.
 
             Args:
@@ -1154,37 +1337,42 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
                     Response from ListTransferJobs.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/transferJobs',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/transferJobs",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_transfer_jobs(request, metadata)
+            request, metadata = self._interceptor.pre_list_transfer_jobs(
+                request, metadata
+            )
             pb_request = transfer.ListTransferJobsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1203,19 +1391,24 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         def __hash__(self):
             return hash("PauseTransferOperation")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: transfer.PauseTransferOperationRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: transfer.PauseTransferOperationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the pause transfer operation method over HTTP.
 
             Args:
@@ -1230,46 +1423,51 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=transferOperations/**}:pause',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=transferOperations/**}:pause",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_pause_transfer_operation(request, metadata)
+            request, metadata = self._interceptor.pre_pause_transfer_operation(
+                request, metadata
+            )
             pb_request = transfer.PauseTransferOperationRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1280,19 +1478,24 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         def __hash__(self):
             return hash("ResumeTransferOperation")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: transfer.ResumeTransferOperationRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: transfer.ResumeTransferOperationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the resume transfer operation method over HTTP.
 
             Args:
@@ -1307,46 +1510,51 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=transferOperations/**}:resume',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=transferOperations/**}:resume",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_resume_transfer_operation(request, metadata)
+            request, metadata = self._interceptor.pre_resume_transfer_operation(
+                request, metadata
+            )
             pb_request = transfer.ResumeTransferOperationRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1357,19 +1565,24 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         def __hash__(self):
             return hash("RunTransferJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: transfer.RunTransferJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: transfer.RunTransferJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the run transfer job method over HTTP.
 
             Args:
@@ -1389,46 +1602,51 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{job_name=transferJobs/**}:run',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{job_name=transferJobs/**}:run",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_run_transfer_job(request, metadata)
+            request, metadata = self._interceptor.pre_run_transfer_job(
+                request, metadata
+            )
             pb_request = transfer.RunTransferJobRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1445,19 +1663,24 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         def __hash__(self):
             return hash("UpdateAgentPool")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: transfer.UpdateAgentPoolRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> transfer_types.AgentPool:
+        def __call__(
+            self,
+            request: transfer.UpdateAgentPoolRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> transfer_types.AgentPool:
             r"""Call the update agent pool method over HTTP.
 
             Args:
@@ -1476,46 +1699,51 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
                     Represents an On-Premises Agent pool.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{agent_pool.name=projects/*/agentPools/*}',
-                'body': 'agent_pool',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{agent_pool.name=projects/*/agentPools/*}",
+                    "body": "agent_pool",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_agent_pool(request, metadata)
+            request, metadata = self._interceptor.pre_update_agent_pool(
+                request, metadata
+            )
             pb_request = transfer.UpdateAgentPoolRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1534,19 +1762,24 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         def __hash__(self):
             return hash("UpdateTransferJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: transfer.UpdateTransferJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> transfer_types.TransferJob:
+        def __call__(
+            self,
+            request: transfer.UpdateTransferJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> transfer_types.TransferJob:
             r"""Call the update transfer job method over HTTP.
 
             Args:
@@ -1566,46 +1799,51 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{job_name=transferJobs/**}',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{job_name=transferJobs/**}",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_transfer_job(request, metadata)
+            request, metadata = self._interceptor.pre_update_transfer_job(
+                request, metadata
+            )
             pb_request = transfer.UpdateTransferJobRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1621,116 +1859,120 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
             return resp
 
     @property
-    def create_agent_pool(self) -> Callable[
-            [transfer.CreateAgentPoolRequest],
-            transfer_types.AgentPool]:
+    def create_agent_pool(
+        self,
+    ) -> Callable[[transfer.CreateAgentPoolRequest], transfer_types.AgentPool]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateAgentPool(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateAgentPool(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_transfer_job(self) -> Callable[
-            [transfer.CreateTransferJobRequest],
-            transfer_types.TransferJob]:
+    def create_transfer_job(
+        self,
+    ) -> Callable[[transfer.CreateTransferJobRequest], transfer_types.TransferJob]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateTransferJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateTransferJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_agent_pool(self) -> Callable[
-            [transfer.DeleteAgentPoolRequest],
-            empty_pb2.Empty]:
+    def delete_agent_pool(
+        self,
+    ) -> Callable[[transfer.DeleteAgentPoolRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteAgentPool(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteAgentPool(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_transfer_job(self) -> Callable[
-            [transfer.DeleteTransferJobRequest],
-            empty_pb2.Empty]:
+    def delete_transfer_job(
+        self,
+    ) -> Callable[[transfer.DeleteTransferJobRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteTransferJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteTransferJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_agent_pool(self) -> Callable[
-            [transfer.GetAgentPoolRequest],
-            transfer_types.AgentPool]:
+    def get_agent_pool(
+        self,
+    ) -> Callable[[transfer.GetAgentPoolRequest], transfer_types.AgentPool]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetAgentPool(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetAgentPool(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_google_service_account(self) -> Callable[
-            [transfer.GetGoogleServiceAccountRequest],
-            transfer_types.GoogleServiceAccount]:
+    def get_google_service_account(
+        self,
+    ) -> Callable[
+        [transfer.GetGoogleServiceAccountRequest], transfer_types.GoogleServiceAccount
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetGoogleServiceAccount(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetGoogleServiceAccount(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_transfer_job(self) -> Callable[
-            [transfer.GetTransferJobRequest],
-            transfer_types.TransferJob]:
+    def get_transfer_job(
+        self,
+    ) -> Callable[[transfer.GetTransferJobRequest], transfer_types.TransferJob]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetTransferJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetTransferJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_agent_pools(self) -> Callable[
-            [transfer.ListAgentPoolsRequest],
-            transfer.ListAgentPoolsResponse]:
+    def list_agent_pools(
+        self,
+    ) -> Callable[[transfer.ListAgentPoolsRequest], transfer.ListAgentPoolsResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListAgentPools(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListAgentPools(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_transfer_jobs(self) -> Callable[
-            [transfer.ListTransferJobsRequest],
-            transfer.ListTransferJobsResponse]:
+    def list_transfer_jobs(
+        self,
+    ) -> Callable[
+        [transfer.ListTransferJobsRequest], transfer.ListTransferJobsResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListTransferJobs(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListTransferJobs(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def pause_transfer_operation(self) -> Callable[
-            [transfer.PauseTransferOperationRequest],
-            empty_pb2.Empty]:
+    def pause_transfer_operation(
+        self,
+    ) -> Callable[[transfer.PauseTransferOperationRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._PauseTransferOperation(self._session, self._host, self._interceptor) # type: ignore
+        return self._PauseTransferOperation(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def resume_transfer_operation(self) -> Callable[
-            [transfer.ResumeTransferOperationRequest],
-            empty_pb2.Empty]:
+    def resume_transfer_operation(
+        self,
+    ) -> Callable[[transfer.ResumeTransferOperationRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ResumeTransferOperation(self._session, self._host, self._interceptor) # type: ignore
+        return self._ResumeTransferOperation(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def run_transfer_job(self) -> Callable[
-            [transfer.RunTransferJobRequest],
-            operations_pb2.Operation]:
+    def run_transfer_job(
+        self,
+    ) -> Callable[[transfer.RunTransferJobRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._RunTransferJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._RunTransferJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_agent_pool(self) -> Callable[
-            [transfer.UpdateAgentPoolRequest],
-            transfer_types.AgentPool]:
+    def update_agent_pool(
+        self,
+    ) -> Callable[[transfer.UpdateAgentPoolRequest], transfer_types.AgentPool]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateAgentPool(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateAgentPool(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_transfer_job(self) -> Callable[
-            [transfer.UpdateTransferJobRequest],
-            transfer_types.TransferJob]:
+    def update_transfer_job(
+        self,
+    ) -> Callable[[transfer.UpdateTransferJobRequest], transfer_types.TransferJob]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateTransferJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateTransferJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
     def kind(self) -> str:
@@ -1740,6 +1982,4 @@ class StorageTransferServiceRestTransport(StorageTransferServiceTransport):
         self._session.close()
 
 
-__all__=(
-    'StorageTransferServiceRestTransport',
-)
+__all__ = ("StorageTransferServiceRestTransport",)

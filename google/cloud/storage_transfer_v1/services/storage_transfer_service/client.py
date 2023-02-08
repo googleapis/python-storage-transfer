@@ -58,6 +58,7 @@ from google.cloud.storage_transfer_v1.types import transfer, transfer_types
 from .transports.base import DEFAULT_CLIENT_INFO, StorageTransferServiceTransport
 from .transports.grpc import StorageTransferServiceGrpcTransport
 from .transports.grpc_asyncio import StorageTransferServiceGrpcAsyncIOTransport
+from .transports.rest import StorageTransferServiceRestTransport
 
 
 class StorageTransferServiceClientMeta(type):
@@ -73,6 +74,7 @@ class StorageTransferServiceClientMeta(type):
     )  # type: Dict[str, Type[StorageTransferServiceTransport]]
     _transport_registry["grpc"] = StorageTransferServiceGrpcTransport
     _transport_registry["grpc_asyncio"] = StorageTransferServiceGrpcAsyncIOTransport
+    _transport_registry["rest"] = StorageTransferServiceRestTransport
 
     def get_transport_class(
         cls,
